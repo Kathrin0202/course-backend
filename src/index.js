@@ -5,7 +5,7 @@ const server = http.createServer((request, response) => {
   const url = new URL(request.url, "http://127.0.0.1");
   const params = url.searchParams;
 
-  if (params.toString() !== "") {
+  if (params.size === 0) {
     if (params.has("hello")) {
       const name = params.get("hello");
       if (name) {
