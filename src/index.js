@@ -5,7 +5,7 @@ const server = http.createServer((request, response) => {
   const url = new URL(request.url, "http://127.0.0.1");
   const params = url.searchParams;
 
-  if (params.size === 0) {
+  if (params.toString !== "") {
     if (params.has("hello")) {
       const name = params.get("hello");
       if (name) {
@@ -23,7 +23,7 @@ const server = http.createServer((request, response) => {
     if (url.pathname === "/users") {
       response.statusCode = 200;
       response.setHeader("Content-Type", "application/json");
-      response.write(getUsers());
+      response.end(getUsers());
       return;
     } else {
       response.statusCode = 200;
